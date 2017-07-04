@@ -8,9 +8,15 @@ class App extends Component {
     data = this.props.data;
   }
 
-  /**
-   * Todo: change the `render` method to display all 15,000 elements.
-   */
+  rowRenderer(item) {
+    return (
+      <li key={item.id} className="App-list-item">
+        <div className="App-list-item-icon" style={{backgroundColor: item.color}}>{item.name[0].toUpperCase()}</div>
+        <p>{item.name} (#{item.id})</p>
+      </li>
+    )
+  }
+
   render() {
     return (
       <div className="App">
@@ -22,10 +28,7 @@ class App extends Component {
         </p>
         <div className="App-scroll-window">
 					<ul className="App-list">
-						<li key={data[0].id} className="App-list-item">
-							<div className="App-list-item-icon" style={{backgroundColor: data[0].color}}>{data[0].name[0].toUpperCase()}</div>
-							<p>{data[0].name} (#{data[0].id})</p>
-						</li>
+						{ data.map(item => this.rowRenderer(item)) }
 					</ul>
 				</div>
       </div>
